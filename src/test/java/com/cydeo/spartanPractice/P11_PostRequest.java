@@ -5,6 +5,7 @@ import com.cydeo.utils.Spartan;
 import groovy.json.JsonOutput;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -75,5 +76,21 @@ public class P11_PostRequest extends BaseUri {
                 .extract().jsonPath();
         System.out.println(j.getString(""));
 
+    }
+    @Test
+    public void getNewSpartans(){
+        Response r = given().accept(ContentType.JSON)
+                .when()
+                .get("/api/spartans")
+                .then()
+                .extract().response();
+
+        System.out.println(r.path("[99]").toString());
+        System.out.println(r.path("[100]").toString());
+        System.out.println(r.path("[101]").toString());
+        System.out.println(r.path("[102]").toString());
+        System.out.println(r.path("[103]").toString());
+        System.out.println(r.path("[104]").toString());
+        //System.out.println(r.path("[105]").toString());
     }
 }
